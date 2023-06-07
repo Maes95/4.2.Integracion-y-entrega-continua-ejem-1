@@ -9,10 +9,12 @@ jobs:
     steps:
       - run: echo "Hello from job1"
   job2:
+    needs: job1
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello from job2"
+      - run: echo "Hello from job2 - After job1" && exit 1
   job3:
+    needs: [job1, job2]
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello from job3"
+      - run: echo "Hello from job3 - After job1 and job2"
