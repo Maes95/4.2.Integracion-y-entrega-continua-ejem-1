@@ -9,13 +9,10 @@ jobs:
     steps:
       - run: echo "Hello from job1"
   job2:
-    needs: job1
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello from job2 - After job1"
+      - run: echo "Hello from job2"
   job3:
-    if: ${{ always() }}
-    needs: [job1, job2]
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello from job3 - After job1 and job2"
+      - run: echo "Hello from job3"
